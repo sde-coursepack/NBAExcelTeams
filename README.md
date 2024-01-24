@@ -4,6 +4,8 @@ This is a working copy of my repo
 
 I'm adding more detail at home.
 
+Jamie add some of his own feature here.
+
 It is simply a demonstration for SDE class!
 
 Build with `.\gradlew build`
