@@ -2,7 +2,7 @@
 
 This is a working copy of my repo
 
-Someone else write another comment.
+I'm adding more detail at home.
 
 It is simply a demonstration for SDE class!
 
