@@ -14,7 +14,6 @@ public class BallDontLieReader {
     public JSONObject getAllNBATeams() {
         try {
             String jsonText = getJSONText();
-            System.out.println(jsonText);
             return new JSONObject(jsonText);
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);

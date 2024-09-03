@@ -1,3 +1,6 @@
+### Excel files ###
+*.xlsx
+
 ### Gradle ignored content ###
 .gradle
 !gradle/wrapper/gradle-wrapper.jar

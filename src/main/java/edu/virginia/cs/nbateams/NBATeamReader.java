@@ -75,7 +75,6 @@ public class NBATeamReader {
 
     private Conference getConference(JSONObject teamJSon) {
         String conferenceText = teamJSon.getString("conference");
-        System.out.println(conferenceText);
         return Conference.getConference(conferenceText);
     }
 
