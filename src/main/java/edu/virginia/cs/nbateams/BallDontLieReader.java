@@ -5,15 +5,17 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.*;
+import java.util.Base64;
 import java.util.stream.*;
 
 public class BallDontLieReader {
-    public static final String ballDontLieAPITeamsApiURL = "https://www.balldontlie.io/api/v1/teams";
+    public static final String ballDontLieAPITeamsApiURL = "https://api.balldontlie.io/v1/teams";
 
 
     public JSONObject getAllNBATeams() {
         try {
             String jsonText = getJSONText();
+            System.out.println(jsonText);
             return new JSONObject(jsonText);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -32,7 +34,14 @@ public class BallDontLieReader {
 
     private InputStreamReader getAPIReader() throws IOException {
         URL ballDontLieAPI = new URL(ballDontLieAPITeamsApiURL);
-        InputStream apiStream = ballDontLieAPI.openStream();
+        URLConnection urlConnection = ballDontLieAPI.openConnection();
+
+        // Students: Never do this! Never post an un-obscured API key! Never include the API
+        // key in a code repository! I only do this here for lack of a better option, as this
+        // feature was changed to require in API key in early 2024
+        urlConnection.setRequestProperty("Authorization", "4fdbf99a-3d36-4fca-82ec-848fe50a62e4");
+
+        InputStream apiStream = urlConnection.getInputStream();
         return new InputStreamReader(apiStream, StandardCharsets.UTF_8);
     }
 }

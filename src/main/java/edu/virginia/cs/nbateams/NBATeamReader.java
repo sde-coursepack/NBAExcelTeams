@@ -5,8 +5,12 @@ import org.json.JSONObject;
 
 import java.util.*;
 
+
+
 public class NBATeamReader {
-    private final List<NBATeam> memo = new ArrayList<>();
+    public static final int MAXIMUM_MODERN_TEAM_ID = 30;
+
+    private List<NBATeam> memo = new ArrayList<>();
     private final BallDontLieReader apiReader;
 
     protected NBATeamReader(BallDontLieReader apiReader) {
@@ -22,17 +26,29 @@ public class NBATeamReader {
         if (!memo.isEmpty()) {
             return memo;
         }
-        getTeamsFromAPI();
+        memo = getTeamsFromAPI();
         return memo;
     }
 
-    private void getTeamsFromAPI() {
+    private List<NBATeam> getTeamsFromAPI() {
         JSONArray teamArray = getTeamsArrayFromAPI();
+        List<NBATeam> teamList = new ArrayList<>();
         for (Object teamObject : teamArray) {
-            JSONObject teamJSon = (JSONObject) teamObject;
-            NBATeam newTeam = getTeamFromJSONObject(teamJSon);
-            memo.add(newTeam);
+            if (isModernNBATeam(teamObject)) {
+                JSONObject teamJSon = (JSONObject) teamObject;
+                NBATeam newTeam = getTeamFromJSONObject(teamJSon);
+                teamList.add(newTeam);
+            }
         }
+        return teamList;
+    }
+
+    private boolean isModernNBATeam(Object teamObject) {
+        if (!(teamObject instanceof JSONObject)) {
+            return false;
+        }
+        JSONObject teamJSon = (JSONObject) teamObject;
+        return teamJSon.getInt("id") <= MAXIMUM_MODERN_TEAM_ID;
     }
 
     private JSONArray getTeamsArrayFromAPI() {
@@ -60,6 +76,7 @@ public class NBATeamReader {
 
     private Conference getConference(JSONObject teamJSon) {
         String conferenceText = teamJSon.getString("conference");
+        System.out.println(conferenceText);
         return Conference.getConference(conferenceText);
     }
 

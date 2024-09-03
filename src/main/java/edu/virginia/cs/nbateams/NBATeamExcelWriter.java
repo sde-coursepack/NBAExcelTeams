@@ -20,14 +20,14 @@ public class NBATeamExcelWriter {
     }
 
     public void writeNBATeamsToFile(List<NBATeam> nbaTeamList) throws IOException {
-        openWorkbook();
+        workbook = getWorkbook();
         addTeamsToWorkbook(nbaTeamList);
         saveAndCloseWorkbook();
     }
 
-    private void openWorkbook() {
+    private Workbook getWorkbook() {
         SSWorkbookFactory workbookFactory = new SSWorkbookFactory();
-        workbook = workbookFactory.getWorkbook(excelFilename);
+        return workbookFactory.getWorkbook(excelFilename);
     }
 
     private void addTeamsToWorkbook(List<NBATeam> nbaTeamList) throws IOException {
