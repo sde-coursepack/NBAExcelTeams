@@ -30,7 +30,7 @@ public class NBATeamExcelWriter {
         return workbookFactory.getWorkbook(excelFilename);
     }
 
-    private void addTeamsToWorkbook(List<NBATeam> nbaTeamList) throws IOException {
+    private void addTeamsToWorkbook(List<NBATeam> nbaTeamList) {
         worksheet = workbook.createSheet("NBA Teams");
         generateTitleRow();
         addTeamsToWorksheet(nbaTeamList);

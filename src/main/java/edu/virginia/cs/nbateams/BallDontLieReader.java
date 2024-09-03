@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.*;
-import java.util.Base64;
 import java.util.stream.*;
 
 public class BallDontLieReader {
@@ -17,12 +16,12 @@ public class BallDontLieReader {
             String jsonText = getJSONText();
             System.out.println(jsonText);
             return new JSONObject(jsonText);
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private String getJSONText() throws IOException {
+    private String getJSONText() throws IOException, URISyntaxException {
         InputStreamReader apiReader = getAPIReader();
         return getTextFromAPIReader(apiReader);
     }
@@ -32,8 +31,8 @@ public class BallDontLieReader {
         return bufferedReader.lines().collect(Collectors.joining());
     }
 
-    private InputStreamReader getAPIReader() throws IOException {
-        URL ballDontLieAPI = new URL(ballDontLieAPITeamsApiURL);
+    private InputStreamReader getAPIReader() throws IOException, URISyntaxException {
+        URL ballDontLieAPI = new URI(ballDontLieAPITeamsApiURL).toURL();
         URLConnection urlConnection = ballDontLieAPI.openConnection();
 
         // Students: Never do this! Never post an un-obscured API key! Never include the API

@@ -44,10 +44,9 @@ public class NBATeamReader {
     }
 
     private boolean isModernNBATeam(Object teamObject) {
-        if (!(teamObject instanceof JSONObject)) {
+        if (!(teamObject instanceof JSONObject teamJSon)) {
             return false;
         }
-        JSONObject teamJSon = (JSONObject) teamObject;
         return teamJSon.getInt("id") <= MAXIMUM_MODERN_TEAM_ID;
     }
 
