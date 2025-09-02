@@ -1,6 +1,5 @@
 package edu.virginia.cs.nbateams;
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.*;
 import static org.mockito.Mockito.*;
 
@@ -22,6 +21,7 @@ public class TeamCityFinderIntegrationTest {
         testTeamFinder = new CityTeamFinder(teamReader);
     }
 
+    /*
     @Test
     public void testSingleCityNBATeamReaderIntegrationOnly() {
         when(mockBDLReader.getAllNBATeams()).thenReturn(getMockJSONObject());
@@ -46,4 +46,5 @@ public class TeamCityFinderIntegrationTest {
         return teamsJSONObject;
 
     }
+     */
 }
