@@ -1,3 +1,0 @@
-- expand some security of the software
-- add an API call
-- improve stability
