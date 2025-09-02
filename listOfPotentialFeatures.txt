@@ -1,4 +1,0 @@
-- new API call available
-- improved stability
-- expand a list of client calls
-- improve security
