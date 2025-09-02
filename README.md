@@ -1,4 +1,4 @@
-# NBAExcelTeams - for Summer 2025
+# NBAExcelTeams - for Fall 2025
 
 It is simply a demonstration for SDE class!
 
